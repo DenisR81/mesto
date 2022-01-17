@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+  <link rel="stylesheet" href="pages/index.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mesto</title>
+</head>
+
+<body class="root">
+  <div class="page">
+    <header class="header">
+      <a href="#"><img src="./images/logo.png" class="effecthov logo" alt="Логотип 'Места России'"></a>
+    </header>
+    
+  <main>
+    <section class="profile">
+      <div class="profile__item">
+        <img src="./images/kusto.jpg" class="profile__avatar" alt="Фото профиля">
+      <div class="profile__list">
+      <div class="profile__flex">
+        <h1 class="profile__title">Жак-Ив Кусто</h1>
+        <img src="./images/Vector.png" class="effecthov edit_button" alt="Кнопка редактирования профиля">
+      </div>
+        <p class="profile__subtitle">Исследователь океана</p>
+      </div>
+      </div>
+      <img src="./images/add.png" class="effecthov add_button" alt="Кнопка добавления">
+    </section>
+
+    <section class="photo-grid">
+      <div class="place">
+        <img src="./images/altai.jpg" class="place__photo" alt="Виды Алтая">
+      <div class="place__list">
+        <h2 class="place__title">Алтай</h2>
+        <div class="effecthov place__heart"></div>
+      </div>
+      </div>
+
+      <div class="place">
+        <img src="./images/drakon.jpg" class="place__photo" alt="Алтай. Зубы Дракона">
+      <div class="place__list">
+        <h2 class="place__title">Зубы дракона</h2>
+        <div class="effecthov place__heart"></div>
+      </div>
+      </div>
+
+      <div class="place">
+        <img src="./images/ges.jpg" class="place__photo" alt="Алтай. Чемальская ГЭС">
+      <div class="place__list">
+        <h2 class="place__title">Чемальская ГЭС</h2>
+        <div class="effecthov place__heart"></div>
+      </div>
+      </div>
+
+      <div class="place">
+        <img src="./images/gates.jpg" class="place__photo" alt="Алтай. Красные ворота">
+      <div class="place__list">
+        <h2 class="place__title">Красные ворота</h2>
+        <div class="effecthov place__heart"></div>
+      </div>
+      </div>
+
+      <div class="place">
+        <img src="./images/lake.jpg" class="place__photo" alt="Алтай. Гейзеровое озеро">
+      <div class="place__list">
+        <h2 class="place__title">Гейзеровое озеро</h2>
+        <div class="effecthov place__heart"></div>
+      </div>
+      </div>
+
+      <div class="place">
+        <img src="./images/teletskoe.jpg" class="place__photo" alt="Алтай. Телецкое озеро">
+      <div class="place__list">
+        <h2 class="place__title">Телецкое озеро</h2>
+        <div class="effecthov place__heart"></div>
+      </div>
+      </div>
+    </section>
+    <div class="popup">
+    <div class="popup-profile">
+      <form action="#" class="popup__container">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <fieldset class="popup__edit">
+          <input type="text" name="name" placeholder="имя" class="popup__name">
+          <input type="text" name="work" placeholder="о себе" class="popup__work">
+        </fieldset>
+        <button type="submit" class="effecthov popup__btn-save">Сохранить</button>
+        <button type="button" class="effecthov btn-close"></button>
+      </form>
+    </div>
+    </div>
+  </main>
+
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
+    </footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
