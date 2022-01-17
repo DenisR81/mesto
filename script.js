@@ -27,6 +27,6 @@ function formSubmitHandler (evt) {
   let profileJob = document.querySelector('.profile__subtitle');
   profileName.textContent = userName;
   profileJob.textContent = userJob;
+  closePopup();
 }
-
-  formElement.addEventListener('submit', formSubmitHandler);
+formElement.addEventListener('submit', formSubmitHandler);
