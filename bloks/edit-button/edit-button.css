@@ -1,4 +1,4 @@
-.edit_button {
+.edit-button {
   max-width: 10px;
   max-height: 10px;
   border: 1px solid #fff;
@@ -6,12 +6,12 @@
   margin-left: 18px;
 }
 
-.edit_button:hover {
+.edit-button:hover {
   opacity: 0.6;
 }
 
 @media screen and (max-width: 585px) {
-  .edit_button {
+  .edit-button {
   max-width: 7.5px;
   max-height: 7.5px;
   margin-left: 10px;

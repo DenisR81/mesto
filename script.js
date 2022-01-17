@@ -1,4 +1,4 @@
-const openPopupButton = document.querySelector('.edit_button');
+const openPopupButton = document.querySelector('.edit-button');
 const closePopupButton = document.querySelector('.btn-close');
 const savePopupButton = document.querySelector('.popup__btn-save');
 const popup = document.querySelector('.popup');

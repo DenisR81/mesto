@@ -1,4 +1,4 @@
-.add_button {
+.add-button {
   max-height: 22px;
   max-width: 22px;
   border: 2px solid #fff;
@@ -7,12 +7,12 @@
   justify-self: end;
 }
 
-.add_button:hover {
+.add-button:hover {
   opacity: .6;
 }
 
 @media screen and (max-width: 660px) {
-  .add_button {
+  .add-button {
     max-height: 16px;
     max-width: 16px;
     padding: 17px 133px;
