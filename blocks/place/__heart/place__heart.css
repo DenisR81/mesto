@@ -1,0 +1,16 @@
+.place__heart {
+  width: 22px;
+  height: 19px;
+  background: transparent;
+  background-image: url(../../../images/heart.svg);
+  border: none;
+  z-index: 2;
+}
+
+.place__heart:hover {
+  opacity: 0.5;
+}
+
+.place__heart:active {
+  background-image: url(../../../images/blheart.svg);
+}
