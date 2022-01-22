@@ -1,6 +1,6 @@
 .profile__subtitle {
   font-size: 18px;
-  line-height: 1.21;
+  line-height: 1.22;
   font-weight: 400;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -10,10 +10,11 @@
   padding: 8px 0;
 }
 
-@media screen and (max-width: 710px) {
+@media screen and (max-width: 740px) {
 .profile__subtitle {
   font-size: 14px;
-  max-width: 282px;
+  max-width: 100%;
   padding: 0;
+  line-height: 1.21;
 }
 }

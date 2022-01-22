@@ -4,7 +4,7 @@
   border-radius: 50%;
 }
 
-@media screen and (max-width: 710px) {
+@media screen and (max-width: 740px) {
 .profile__avatar {
   margin: auto;
   padding: 0;

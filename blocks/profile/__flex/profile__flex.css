@@ -3,11 +3,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
-@media screen and (max-width: 710px) {
+@media screen and (max-width: 740px) {
 .profile__flex {
-  justify-content: center;
   align-items: center;
 }
 }
