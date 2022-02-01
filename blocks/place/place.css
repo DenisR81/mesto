@@ -1,6 +1,7 @@
 .place {
+  position: relative;
   margin: 0 auto;
-  max-width: 282px;
+  width: 282px;
   background-color: #fff;
   border-radius: 10px;
 }
