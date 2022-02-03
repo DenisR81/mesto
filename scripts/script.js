@@ -35,14 +35,14 @@ const photoGrid = document.querySelector(".photo-grid");
 const heart = document.querySelector(".place__heart");
 const popupImg = document.querySelector(".popup_type_img");
 const closeImgButton = document.querySelector(".popup__btn-close_img");
-const formElement = document.querySelector(".popup__container");
+const formElement = document.querySelector(".popup__container_type_ed");
 const nameInput = document.getElementById("edit-name");
 const jobInput = document.getElementById("edit-work");
 const profileName = document.querySelector(".profile__title");
 const profileJob = document.querySelector(".profile__subtitle");
 const addName = document.querySelector("#add-name").value;
 const addLink = document.querySelector("#add-link").value;
-const addFormElement = document.querySelector(".popup1__container");
+const addFormElement = document.querySelector(".popup__container_type_add");
 const linkImg = document.querySelector(".popup__image");
 const nameImg = document.querySelector(".popup__text");
 
