@@ -1,6 +1,5 @@
-.popup1__container {
+.popup__list {
   position: relative;
   margin: 0;
   padding: 0;
-  z-index: 3;
 }

@@ -47,7 +47,7 @@
       <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
     </footer>
 
-    <div class="popup">
+    <div class="popup popup_type_edit">
       <div class="popup__profile">
         <h2 class="popup__title">Редактировать профиль</h2>
         <form action="#" name="form-profile" class="popup__container">
@@ -61,25 +61,25 @@
       </div>
     </div>
 
-  <div class="popup1">
-    <div class="popup1__add">
-      <h2 class="popup1__addtitle">Новое место</h2>
+  <div class="popup popup_type_add">
+    <div class="popup__profile">
+      <h2 class="popup__title">Новое место</h2>
       <form action="#" name="form-add" class="popup1__container">
-        <fieldset class="popup1__addform">
-          <input type="text" name="addname" id="add-name" placeholder="название" class="popup1__fields popup1__fields_field_addname">
-          <input type="text" name="addlink" id="add-link" placeholder="ссылка на картинку" class="popup1__fields popup1__fields_field_addlink">
+        <fieldset class="popup__edit">
+          <input type="text" name="addname" id="add-name" placeholder="название" class="popup__fields popup__fields_field_addname">
+          <input type="text" name="addlink" id="add-link" placeholder="ссылка на картинку" class="popup__fields popup__fields_field_addlink">
         </fieldset>
-        <button type="submit" class="effecthov popup1__btn-save">Создать</button>
+        <button type="submit" class="effecthov popup__btn-save">Создать</button>
       </form>
-      <button type="button" class="effecthov popup1__btn-close" aria-label="Кнопка закрытия формы"></button>
+      <button type="button" class="effecthov popup__btn-close popup__btn-close_add" aria-label="Кнопка закрытия формы"></button>
     </div>
   </div>
 
-<div class="popup-image">
-  <div class="popup-image__list">
-    <img class="popup-image__image" src="rrr" alt="">
-    <h2 class="popup-image__text"></h2>
-    <button type="button" class="effecthov popup-image__btn-close" aria-label="Кнопка закрытия формы"></button>
+<div class="popup popup_type_img">
+  <div class="popup__list">
+    <img class="popup__image" src="rrr" alt="">
+    <h2 class="popup__text"></h2>
+    <button type="button" class="effecthov popup__btn-close popup__btn-close_img" aria-label="Кнопка закрытия формы"></button>
   </div>
 </div>
 </div>
