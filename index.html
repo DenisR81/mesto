@@ -50,10 +50,12 @@
     <div class="popup popup_type_edit">
       <div class="popup__profile">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form action="#" name="form-profile" class="popup__container popup__container_type_ed">
+        <form id="form" action="#" name="form-profile" class="popup__container popup__container_type_ed" novalidate>
           <fieldset class="popup__edit">
-            <input type="text" name="name" id="edit-name" placeholder="имя" class="popup__fields popup__fields_field_name">
-            <input type="text" name="work" id="edit-work" placeholder="о себе" class="popup__fields popup__fields_field_work">
+            <input id="name" type="text" name="name" placeholder="имя" class="popup__fields popup__fields_field_name" minlength = "2" maxlength = "40" required>
+            <span id="error-name" class="popup__error-message popup__error-message_visible"></span>
+            <input id="work" type="text" name="work" placeholder="о себе" class="popup__fields popup__fields_field_work" minlength = "2" maxlength = "200" required>
+            <span id="error-work" class="popup__error-message popup__error-message_visible"></span>
           </fieldset>
           <button type="submit" class="effecthov popup__btn-save">Сохранить</button>
         </form>
@@ -64,10 +66,12 @@
   <div class="popup popup_type_add">
     <div class="popup__profile">
       <h2 class="popup__title">Новое место</h2>
-      <form action="#" name="form-add" class="popup__container popup__container_type_add">
+      <form id="form-add" action="#" name="form-add" class="popup__container popup__container_type_add" novalidate>
         <fieldset class="popup__edit">
-          <input type="text" name="addname" id="add-name" placeholder="название" class="popup__fields popup__fields_field_addname">
-          <input type="text" name="addlink" id="add-link" placeholder="ссылка на картинку" class="popup__fields popup__fields_field_addlink">
+          <input id="addname" type="text" name="addname" placeholder="название" class="popup__fields popup__fields_field_addname" minlength = "2" maxlength = "30" required>
+          <span id="error-addname" class="popup__error-message popup__error-message_visible"></span>
+          <input id="link" type="url" name="addlink" placeholder="ссылка на картинку" class="popup__fields popup__fields_field_addlink" required>
+          <span id="error-link" class="popup__error-message popup__error-message_visible"></span>
         </fieldset>
         <button type="submit" class="effecthov popup__btn-save">Создать</button>
       </form>
@@ -85,5 +89,6 @@
 </div>
 
 <script src="./scripts/script.js"></script>
+<script src="./scripts/validate.js"></script>
 </body>
 </html>

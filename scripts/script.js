@@ -36,12 +36,12 @@ const heart = document.querySelector(".place__heart");
 const popupImg = document.querySelector(".popup_type_img");
 const closeImgButton = document.querySelector(".popup__btn-close_img");
 const formElement = document.querySelector(".popup__container_type_ed");
-const nameInput = document.getElementById("edit-name");
-const jobInput = document.getElementById("edit-work");
+const nameInput = document.getElementById("name");
+const jobInput = document.getElementById("work");
 const profileName = document.querySelector(".profile__title");
 const profileJob = document.querySelector(".profile__subtitle");
-const addName = document.querySelector("#add-name").value;
-const addLink = document.querySelector("#add-link").value;
+const addName = document.querySelector("#addname").value;
+const addLink = document.querySelector("#link").value;
 const addFormElement = document.querySelector(".popup__container_type_add");
 const linkImg = document.querySelector(".popup__image");
 const nameImg = document.querySelector(".popup__text");
@@ -75,6 +75,8 @@ function addCard(name, link) {
 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
+  popupCloseClick(popup);
+  popupCloseEsc(popup);
 }
 
 function closePopup(popup) {
@@ -90,8 +92,8 @@ function formSubmitHandler(evt) {
 
 function addFormSubmitHandler(evt) {
   evt.preventDefault();
-  const name = document.querySelector("#add-name").value;
-  const link = document.querySelector("#add-link").value;
+  const name = document.querySelector("#addname").value;
+  const link = document.querySelector("#link").value;
   card = addCard(name, link);
   photoGrid.prepend(card);
   closePopup(popupAdd);
@@ -103,8 +105,28 @@ function inpFormSubmitHandler() {
   openPopup(popupEdit);
 }
 
+//Функция закрытия попапа при клике вне попапа
+function popupCloseClick(e) {
+  e.addEventListener('click', (event) => {
+  if (event.target === event.currentTarget) {
+  closePopup(e);
+  };
+  });
+  }
+  
+  //Функция закрытия попапа при нажатии Esc
+function popupCloseEsc(e) {
+  document.addEventListener('keydown', (evt) => {
+  if (evt.key === 'Escape') {
+  closePopup(e);
+  }
+  });
+  };
+
+
 formElement.addEventListener("submit", formSubmitHandler);
 addFormElement.addEventListener("submit", addFormSubmitHandler);
+
 openPopupButton.addEventListener("click", inpFormSubmitHandler);
 closePopupButton.addEventListener("click", () => {
   closePopup(popupEdit);

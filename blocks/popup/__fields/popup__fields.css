@@ -11,9 +11,6 @@
   margin: 0 auto;
 }
 
-.popup__fields:first-child {
-  margin-bottom: 30px;
-}
 
 @media screen and (max-width: 660px) {
 .popup__fields {
