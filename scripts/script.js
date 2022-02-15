@@ -45,7 +45,7 @@ const addLink = document.querySelector("#link").value;
 const addFormElement = document.querySelector(".popup__container_type_add");
 const linkImg = document.querySelector(".popup__image");
 const nameImg = document.querySelector(".popup__text");
-
+const buttonSave = document.querySelector(".popup__btn-save_type_add");
 
 items.forEach((item) => {
   const card = addCard(item.name, item.link, template);
@@ -75,12 +75,13 @@ function addCard(name, link) {
 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
-  popupCloseClick(popup);
-  popupCloseEsc(popup);
+  document.addEventListener('keydown', popupCloseEsc);
 }
+
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
+  document.removeEventListener('keydown', popupCloseEsc);
 }
 
 function formSubmitHandler(evt) {
@@ -96,6 +97,8 @@ function addFormSubmitHandler(evt) {
   const link = document.querySelector("#link").value;
   card = addCard(name, link);
   photoGrid.prepend(card);
+  evt.target.reset();
+  butDis(buttonSave);
   closePopup(popupAdd);
 }
 
@@ -106,28 +109,29 @@ function inpFormSubmitHandler() {
 }
 
 //Функция закрытия попапа при клике вне попапа
-function popupCloseClick(e) {
-  e.addEventListener('click', (event) => {
-  if (event.target === event.currentTarget) {
-  closePopup(e);
-  };
-  });
+const popupCloseClick = (evt) => {
+  if (evt.target === evt.currentTarget) {
+    closePopup(evt.target);
   }
-  
+}
   //Функция закрытия попапа при нажатии Esc
-function popupCloseEsc(e) {
-  document.addEventListener('keydown', (evt) => {
+const popupCloseEsc = (evt) => {
   if (evt.key === 'Escape') {
-  closePopup(e);
+    closePopup(document.querySelector('.popup_opened'));
+    };
   }
-  });
-  };
 
+//Функция disabled кнопки
+function butDis(e) {
+  e.setAttribute('disabled','')
+  e.classList.add('popup__btn-save_disabled');
+}
 
 formElement.addEventListener("submit", formSubmitHandler);
 addFormElement.addEventListener("submit", addFormSubmitHandler);
 
 openPopupButton.addEventListener("click", inpFormSubmitHandler);
+popup.addEventListener('click', popupCloseClick);
 closePopupButton.addEventListener("click", () => {
   closePopup(popupEdit);
 })
@@ -140,3 +144,8 @@ closeAddButton.addEventListener("click", () => {
 closeImgButton.addEventListener("click", () => {
   closePopup(popupImg);
 });
+
+popupAdd.addEventListener('click', popupCloseClick);
+popupEdit.addEventListener('click', popupCloseClick);
+popupImg.addEventListener('click', popupCloseClick);
+
