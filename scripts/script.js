@@ -1,3 +1,6 @@
+import {FormValidator} from './formValidator.js';
+import {popupImg, openPopup, closePopup} from './utils.js';
+import { Card } from './card.js';
 const items = [
   {
     name: "Архыз",
@@ -32,57 +35,37 @@ const popupEdit = document.querySelector(".popup_type_edit")
 const popupAdd = document.querySelector(".popup_type_add");
 const closeAddButton = document.querySelector(".popup__btn-close_add");
 const photoGrid = document.querySelector(".photo-grid");
-const heart = document.querySelector(".place__heart");
-const popupImg = document.querySelector(".popup_type_img");
 const closeImgButton = document.querySelector(".popup__btn-close_img");
 const formElement = document.querySelector(".popup__container_type_ed");
 const nameInput = document.getElementById("name");
 const jobInput = document.getElementById("work");
 const profileName = document.querySelector(".profile__title");
 const profileJob = document.querySelector(".profile__subtitle");
-const addName = document.querySelector("#addname").value;
-const addLink = document.querySelector("#link").value;
 const addFormElement = document.querySelector(".popup__container_type_add");
-const linkImg = document.querySelector(".popup__image");
-const nameImg = document.querySelector(".popup__text");
 const buttonSave = document.querySelector(".popup__btn-save_type_add");
+const buttonSaveProfile = document.querySelector(".popup__btn-save_type_edit")
+const addCardForm = popupAdd.querySelector(".popup__container");
+const editForm = popupEdit.querySelector(".popup__container");
+
+const validationConfig = {
+  formSelector: '.popup__container',
+  inputSelector: '.popup__fields',
+  submitButtonSelector: '.popup__btn-save',
+  inactiveButtonClass: 'popup__btn-save_disabled',
+  inputErrorClass: 'popup__fields_type_error',
+  errorClass: 'popup__error-message_visible',
+};
+
+const editValidator = new FormValidator(validationConfig, editForm);
+const cardValidator = new FormValidator(validationConfig, addCardForm);
+
+editValidator.enableValidation();
+cardValidator.enableValidation();
 
 items.forEach((item) => {
-  const card = addCard(item.name, item.link, template);
-  photoGrid.append(card);
+  const card = new Card(item.name, item.link, "#template");
+  photoGrid.append(card.addCard());
 });
-
-function addCard(name, link) {
-  const template = document.querySelector("#template").content;
-  const elementItem = template.cloneNode(true);
-  elementItem.querySelector(".place__title").textContent = name;
-  elementItem.querySelector(".place__photo").alt = name;
-  elementItem.querySelector(".place__photo").src = link;
-  elementItem.querySelector(".place__heart").addEventListener("click", function (evt) {
-    evt.target.classList.toggle("place__heart_active");
-  });
-  elementItem.querySelector(".place__urn").addEventListener("click", (evt) => {
-    evt.target.closest(".place").remove();
-  });
-  elementItem.querySelector(".place__photo").addEventListener("click", (evt) => {
-    linkImg.src = link;
-    linkImg.alt = name;
-    nameImg.textContent = name;
-    openPopup(popupImg);
-  });
-  return elementItem;
-}
-
-function openPopup(popup) {
-  popup.classList.add("popup_opened");
-  document.addEventListener('keydown', popupCloseEsc);
-}
-
-
-function closePopup(popup) {
-  popup.classList.remove("popup_opened");
-  document.removeEventListener('keydown', popupCloseEsc);
-}
 
 function formSubmitHandler(evt) {
   evt.preventDefault();
@@ -95,8 +78,8 @@ function addFormSubmitHandler(evt) {
   evt.preventDefault();
   const name = document.querySelector("#addname").value;
   const link = document.querySelector("#link").value;
-  card = addCard(name, link);
-  photoGrid.prepend(card);
+  const card = new Card(name, link, "#template");
+  photoGrid.prepend(card.addCard());
   evt.target.reset();
   butDis(buttonSave);
   closePopup(popupAdd);
@@ -114,12 +97,6 @@ const popupCloseClick = (evt) => {
     closePopup(evt.target);
   }
 }
-  //Функция закрытия попапа при нажатии Esc
-const popupCloseEsc = (evt) => {
-  if (evt.key === 'Escape') {
-    closePopup(document.querySelector('.popup_opened'));
-    };
-  }
 
 //Функция disabled кнопки
 function butDis(e) {
@@ -130,13 +107,17 @@ function butDis(e) {
 formElement.addEventListener("submit", formSubmitHandler);
 addFormElement.addEventListener("submit", addFormSubmitHandler);
 
-openPopupButton.addEventListener("click", inpFormSubmitHandler);
+openPopupButton.addEventListener("click", () => {
+  inpFormSubmitHandler();
+  editValidator.resetErrors()
+  butDis(buttonSaveProfile)});
 popup.addEventListener('click', popupCloseClick);
 closePopupButton.addEventListener("click", () => {
   closePopup(popupEdit);
 })
 openAddButton.addEventListener("click", () => {
   openPopup(popupAdd);
+  cardValidator.resetErrors();
 })
 closeAddButton.addEventListener("click", () => {
   closePopup(popupAdd);
