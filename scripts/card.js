@@ -27,8 +27,17 @@ export class Card {
     this._imageButton.addEventListener("click", this._imageCard);
   }
 
+  _getTemplate() {
+    const cardElement = document
+      .querySelector("#template")
+      .content
+      .querySelector('.place')
+      .cloneNode(true);
+    return cardElement;
+  }
+
   addCard() {
-    this._elementItem = this._template.cloneNode(true);
+    this._elementItem = this._getTemplate();
     this._likeButton = this._elementItem.querySelector(".place__heart");
     this._imageButton = this._elementItem.querySelector(".place__photo");
     this._deleteButton = this._elementItem.querySelector(".place__urn");

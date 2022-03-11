@@ -1,6 +1,6 @@
-import {FormValidator} from './formValidator.js';
+import {FormValidator} from './FormValidator.js';
 import {popupImg, openPopup, closePopup} from './utils.js';
-import { Card } from './card.js';
+import { Card } from './Card.js';
 const items = [
   {
     name: "Архыз",
@@ -81,7 +81,7 @@ function addFormSubmitHandler(evt) {
   const card = new Card(name, link, "#template");
   photoGrid.prepend(card.addCard());
   evt.target.reset();
-  butDis(buttonSave);
+  desableBtn(buttonSave);
   closePopup(popupAdd);
 }
 
@@ -99,7 +99,7 @@ const popupCloseClick = (evt) => {
 }
 
 //Функция disabled кнопки
-function butDis(e) {
+function desableBtn(e) {
   e.setAttribute('disabled','')
   e.classList.add('popup__btn-save_disabled');
 }
@@ -110,7 +110,8 @@ addFormElement.addEventListener("submit", addFormSubmitHandler);
 openPopupButton.addEventListener("click", () => {
   inpFormSubmitHandler();
   editValidator.resetErrors()
-  butDis(buttonSaveProfile)});
+  desableBtn(buttonSaveProfile)
+});
 popup.addEventListener('click', popupCloseClick);
 closePopupButton.addEventListener("click", () => {
   closePopup(popupEdit);
@@ -129,4 +130,3 @@ closeImgButton.addEventListener("click", () => {
 popupAdd.addEventListener('click', popupCloseClick);
 popupEdit.addEventListener('click', popupCloseClick);
 popupImg.addEventListener('click', popupCloseClick);
-
