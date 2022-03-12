@@ -1,7 +1,7 @@
 import { linkImg, nameImg, popupImg, openPopup } from './utils.js';
 export class Card {
   constructor(name, link, cardTemplateSelector) {
-    this._template = document.querySelector(cardTemplateSelector).content,
+    this._cardTemplateSelector = cardTemplateSelector,
     this._name = name,
     this._link = link
   }
@@ -29,7 +29,7 @@ export class Card {
 
   _getTemplate() {
     const cardElement = document
-      .querySelector("#template")
+      .querySelector(this._cardTemplateSelector)
       .content
       .querySelector('.place')
       .cloneNode(true);
