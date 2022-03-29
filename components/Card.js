@@ -1,9 +1,10 @@
-import { linkImg, nameImg, popupImg, openPopup } from './utils.js';
-export class Card {
-  constructor(name, link, cardTemplateSelector) {
+
+export default class Card {
+  constructor(data, cardTemplateSelector, handleCardClick) {
     this._cardTemplateSelector = cardTemplateSelector,
-    this._name = name,
-    this._link = link
+    this._name = data.name,
+    this._link = data.link,
+    this._handleCardClick = handleCardClick
   }
   
   _likeIcon = () => {
@@ -14,17 +15,10 @@ export class Card {
     evt.target.closest(".place").remove();
   };
 
-  _imageCard = () => {
-    linkImg.src = this._link;
-    linkImg.alt = this._name;
-    nameImg.textContent = this._name;
-    openPopup(popupImg);
-  }
-
   _setEventListeners() {
     this._deleteButton.addEventListener("click", this._deleteCard);
     this._likeButton.addEventListener("click", this._likeIcon);
-    this._imageButton.addEventListener("click", this._imageCard);
+    this._imageButton.addEventListener("click", this._handleCardClick);
   }
 
   _getTemplate() {
@@ -35,8 +29,8 @@ export class Card {
       .cloneNode(true);
     return cardElement;
   }
-
-  addCard() {
+ 
+  createCard() {
     this._elementItem = this._getTemplate();
     this._likeButton = this._elementItem.querySelector(".place__heart");
     this._imageButton = this._elementItem.querySelector(".place__photo");
