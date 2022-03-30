@@ -2,7 +2,6 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-  <link rel="stylesheet" href="pages/index.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesto</title>
 </head>
@@ -10,13 +9,13 @@
 <body class="root">
   <div class="page">
     <header class="header">
-      <a href="#"><img src="./images/logo.svg" class="effecthov logo" alt="Логотип 'Места России'"></a>
+      <a href="#"><img src="<%=require('./images/logo.svg')%>" class="effecthov logo" alt="Логотип 'Места России'"></a>
     </header>
     
     <main>
       <section class="profile">
         <div class="profile__item">
-          <img src="./images/kusto.jpg" class="profile__avatar" alt="Фото профиля">
+          <img src="<%=require('./images/kusto.jpg')%>" class="profile__avatar" alt="Фото профиля">
           <div class="profile__list">
             <div class="profile__flex">
               <h1 class="profile__title">Жак-Ив Кусто</h1>
