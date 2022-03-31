@@ -31,9 +31,7 @@ export const nameInput = document.getElementById("name");
 export const jobInput = document.getElementById("work");
 export const profileName = document.querySelector(".profile__title");
 export const profileJob = document.querySelector(".profile__subtitle");
-export const buttonSave = document.querySelector(".popup__btn-save_type_add");
-export const buttonSaveProfile = document.querySelector(".popup__btn-save_type_edit")
-
+export const formValidators = {};
 export const validationConfig = {
   formSelector: '.popup__container',
   inputSelector: '.popup__fields',

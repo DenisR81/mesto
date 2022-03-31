@@ -11,9 +11,8 @@ import {
   openPopupButton,
   nameInput,
   jobInput,
-  buttonSave,
-  buttonSaveProfile,
-  validationConfig
+  validationConfig,
+  formValidators
 } from '../utils/constants.js';
 import './index.css';
 
@@ -27,7 +26,7 @@ const createCard = (data) => {
 
 const renderCard = (data,wrap) => {
   const card = createCard(data);
-  wrap.prepend(card);
+  section.addItem(card);
 }
 
 const section = new Section(
@@ -48,7 +47,7 @@ const addForm = new PopupWithForm(popupAdd, () => {
 });
 addForm.setEventListeners();
 openAddButton.addEventListener('click', () => {
-  disableBtn(buttonSave);
+  formValidators.formAdd.resetErrors();
   addForm.open()
 })
 
@@ -64,26 +63,19 @@ const editForm = new PopupWithForm('.popup_type_edit', (name) => {
 editForm.setEventListeners();
 
 openPopupButton.addEventListener('click', () => {
+  formValidators.formProfile.resetErrors();
   const {name, job} = userInfo.getUserInfo();
   nameInput.value = name;
   jobInput.value = job;
-  disableBtn(buttonSaveProfile);
   editForm.open()
 })
 
-//disable кнопки
-function disableBtn(e) {
-  e.setAttribute('disabled','');
-  e.classList.add('popup__btn-save_disabled')
-}
-
 //Валидация
 function validation(validationConfig) {
-  const validators = {}
   const formList = Array.from(document.querySelectorAll(validationConfig.formSelector));
   formList.forEach((formElement) => {
-    validators[`${formElement.name}`] = new FormValidator(validationConfig, formElement);
-    validators[`${formElement.name}`].enableValidation();
+    formValidators[`${formElement.id}`] = new FormValidator(validationConfig, formElement);
+    formValidators[`${formElement.id}`].enableValidation();
   });
 }
 validation(validationConfig);
