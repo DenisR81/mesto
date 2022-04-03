@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mesto</title>
+<script defer src="index.js"></script><link href="main.css" rel="stylesheet"></head>
+
+<body class="root">
+  <div class="page">
+    <header class="header">
+      <a href="#"><img src="03b78ada3425e9132ff3.svg" class="effecthov logo" alt="Логотип 'Места России'"></a>
+    </header>
+    
+    <main>
+      <section class="profile">
+        <div class="profile__item">
+          <img src="bbe7c5b6093ec0273de1.jpg" class="profile__avatar" alt="Фото профиля">
+          <div class="profile__list">
+            <div class="profile__flex">
+              <h1 class="profile__title">Жак-Ив Кусто</h1>
+              <p class="profile__subtitle">Исследователь океана</p>
+            </div>
+            <button type="button" class="effecthov profile__edit-button" aria-label="Кнопка редактирования профиля"></button>
+          </div>
+        </div>
+        <button type="button" class="effecthov profile__add-button" aria-label="Кнопка добавления"></button>
+      </section>
+
+      <section class="photo-grid">
+      </section>
+
+      <template id="template">
+      <article class="place">
+        <img src="rrr" class="effecthov place__photo" alt="">
+        <div class="place__list">
+          <h2 class="place__title"></h2>
+          <button type="button" class="effecthov place__heart" aria-label="Лайк"></button>
+        </div>
+        <button type="button" class="effecthov place__urn" aria-label="Удаление"></button>
+        </article>
+      </template>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
+    </footer>
+
+    <div class="popup popup_type_edit">
+      <div class="popup__profile">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form id="formProfile" action="#" name="formProfile" class="popup__container popup__container_type_ed" novalidate>
+          <fieldset class="popup__edit">
+            <input id="name" type="text" name="name" placeholder="имя" class="popup__fields popup__fields_field_name" minlength = "2" maxlength = "40" required>
+            <span id="error-name" class="popup__error-message popup__error-message_visible"></span>
+            <input id="work" type="text" name="work" placeholder="о себе" class="popup__fields popup__fields_field_work" minlength = "2" maxlength = "200" required>
+            <span id="error-work" class="popup__error-message popup__error-message_visible"></span>
+          </fieldset>
+          <button type="submit" class="effecthov popup__btn-save popup__btn-save_type_edit">Сохранить</button>
+        </form>
+        <button type="button" class="effecthov popup__btn-close" aria-label="Кнопка закрытия формы"></button>
+      </div>
+    </div>
+
+  <div class="popup popup_type_add">
+    <div class="popup__profile">
+      <h2 class="popup__title">Новое место</h2>
+      <form id="formAdd" action="#" name="formAdd" class="popup__container popup__container_type_add" novalidate>
+        <fieldset class="popup__edit">
+          <input id="addname" type="text" name="addname" placeholder="название" class="popup__fields popup__fields_field_addname" minlength = "2" maxlength = "30" required>
+          <span id="error-addname" class="popup__error-message popup__error-message_visible"></span>
+          <input id="link" type="url" name="addlink" placeholder="ссылка на картинку" class="popup__fields popup__fields_field_addlink" required>
+          <span id="error-link" class="popup__error-message popup__error-message_visible"></span>
+        </fieldset>
+        <button type="submit" class="effecthov popup__btn-save popup__btn-save_type_add">Создать</button>
+      </form>
+      <button type="button" class="effecthov popup__btn-close popup__btn-close_add" aria-label="Кнопка закрытия формы"></button>
+    </div>
+  </div>
+
+<div class="popup popup_type_img">
+  <div class="popup__list">
+    <img class="popup__image" src="rrr" alt="">
+    <h2 class="popup__text"></h2>
+    <button type="button" class="effecthov popup__btn-close popup__btn-close_img" aria-label="Кнопка закрытия формы"></button>
+  </div>
+</div>
+</div>
+<script type = "module" src="./pages/index.js"></script>
+</body>
+</html>
