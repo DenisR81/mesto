@@ -41,7 +41,7 @@ export default class Card {
 
   setLikes(newLikes) {
     this._likes = newLikes;
-    const likeCountElement = this._elementItem.querySelector('.card__like-count');
+    const likeCountElement = this._elementItem.querySelector('.place__like-count');
     likeCountElement.textContent = this._likes.length;
     if (this.isLiked()) {
       this._likeIcon();
@@ -75,3 +75,4 @@ export default class Card {
     return this._elementItem;
   }
 } 
+

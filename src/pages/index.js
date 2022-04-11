@@ -9,9 +9,9 @@ let userId = {}
 
 api.getProfile()
 .then(res => {
-  userInfo.setUserInfo(res.name, res.about,res.avatar);
+  userInfo.setUserInfo(res.name, res.about);
+  userInfo.setAvatarInfo(res.avatar);
   userId = res._id;
-  //console.log(res)
 })
 
 api.getInitialCards()
@@ -29,14 +29,7 @@ api.getInitialCards()
   })
 })
 
-/*api.getAvatar()
-.then(res => {
-  
-  console.log(res)
-})*/
-
 import {
-  profileAvatar,
   openImgProfileButton,
   popupAdd,
   openAddButton,
@@ -125,16 +118,21 @@ imagePopup.setEventListeners();
 // профиль
 const userInfo = new UserInfo({profileNameSelector: '.profile__title', profileJobSelector: '.profile__subtitle', profileAvatarSelector: '.profile__avatar-img'});
 const editForm = new PopupWithForm('.popup_type_edit', (data) => {
+  editForm.renderLoading(true);
   const {name, work, avatar} = data;
   api.editProfile(name, work,avatar)
   .then(() => {
     userInfo.setUserInfo(name, work, avatar);
+  })
+  .finally(() => {
+    renderLoading(false)
   })
   });
 editForm.setEventListeners();
 
 openPopupButton.addEventListener('click', () => {
   formValidators.formProfile.resetErrors();
+  editForm.renderLoading(false);
   const {name, job} = userInfo.getUserInfo();
   nameInput.value = name;
   jobInput.value = job;
@@ -155,13 +153,19 @@ const confirmPopup = new PopupWithForm('.popup_type_delete-confirm');
 confirmPopup.setEventListeners();
 
 const avatarPopup = new PopupWithForm('.popup_type_editImgProfile', (input) => {
+  avatarPopup.renderLoading(true);
   api.getAvatar(input.avatar)
   .then((res) => {
     userInfo.setAvatarInfo(res.avatar)
   })
+  .finally(() => {
+    renderLoading(false)
+  })
 });
 openImgProfileButton.addEventListener('click', () => {
-  formValidators.formProfile.resetErrors();
+  formValidators.formImgProfile.resetErrors();
+  avatarPopup.renderLoading(false);
   avatarPopup.open(); 
   });
   avatarPopup.setEventListeners();
+  

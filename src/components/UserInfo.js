@@ -21,4 +21,4 @@ export default class UserInfo {
     this._avatar.src = avatar
     console.log(this._avatar)
   }
-  }
+}
