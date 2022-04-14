@@ -8,7 +8,6 @@ import { api } from '../components/Api.js';
 let userId = {}
 
 import {
-  initialCards,
   openImgProfileButton,
   popupAdd,
   openAddButton,
@@ -42,7 +41,6 @@ Promise.all ([
     userInfo.setUserInfo(res[0].name, res[0].about);
     userInfo.setAvatarInfo(res[0].avatar);
     userId = res[0]._id;
-    console.log(res[1])
     section.renderItems(res[1], listData)
   })
   .catch(err => console.log(`Ошибка: ${err}`))
@@ -89,7 +87,7 @@ const createCard = (data) => {
 
 const addForm = new PopupWithForm(popupAdd, (data)=> {
   addForm.renderLoading(true);
-  api.addCard(data)
+  api.addCard(data.addname, data.addlink)
     .then((res) => {
     listData(res)
   addForm.close();
@@ -166,3 +164,4 @@ openImgProfileButton.addEventListener('click', () => {
   avatarPopup.open(); 
   });
   avatarPopup.setEventListeners();
+console

@@ -31,7 +31,7 @@ class Api {
     .then(res => res.ok ? res.json() : Promise.reject(res.status))
   }
 
-  addCard({title: name, link}) {
+  addCard(name, link) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
