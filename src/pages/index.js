@@ -7,29 +7,8 @@ import UserInfo from '../components/UserInfo.js';
 import { api } from '../components/Api.js';
 let userId = {}
 
-api.getProfile()
-.then(res => {
-  userInfo.setUserInfo(res.name, res.about);
-  userInfo.setAvatarInfo(res.avatar);
-  userId = res._id;
-})
-
-api.getInitialCards()
-.then(cardList => {
-  cardList.forEach(data => {
-    const card = createCard({
-      name: data.name,
-      link: data.link,
-      likes: data.likes,
-      id: data._id,
-      userId: userId,
-      ownerId: data.owner._id,
-    })
-    section.addItem(card)
-  })
-})
-
 import {
+  initialCards,
   openImgProfileButton,
   popupAdd,
   openAddButton,
@@ -40,6 +19,33 @@ import {
   formValidators
 } from '../utils/constants.js';
 import './index.css';
+
+const section = new Section(".photo-grid");
+
+function listData(data) {
+  const card = createCard({
+    name: data.name,
+    link: data.link,
+    likes: data.likes,
+    userId: userId,
+    id: data._id,
+    ownerId: data.owner._id,
+  })
+  section.addItem(card)
+}
+
+Promise.all ([
+  api.getProfile(),
+  api.getInitialCards()
+])
+  .then((res) => {
+    userInfo.setUserInfo(res[0].name, res[0].about);
+    userInfo.setAvatarInfo(res[0].avatar);
+    userId = res[0]._id;
+    console.log(res[1])
+    section.renderItems(res[1], listData)
+  })
+  .catch(err => console.log(`Ошибка: ${err}`))
 
 // карточки
 const createCard = (data) => {
@@ -57,6 +63,7 @@ const createCard = (data) => {
         card.delCard(res);
         confirmPopup.close()
       })
+      .catch(err => console.log(`Ошибка: ${err}`))
     })
     },
 
@@ -65,45 +72,32 @@ const createCard = (data) => {
         api.deleteLike(id)
       .then(res => {
         card.setLikes(res.likes)
-      }); }
+      }) 
+      .catch(err => console.log(`Ошибка: ${err}`))
+    }
       else 
       {
       api.addLike(id)
       .then(res => {
         card.setLikes(res.likes)
-      });
+      })
+      .catch(err => console.log(`Ошибка: ${err}`))
       }    
   });
     return card.createCard();
 }
 
-const renderCard = (data) => {
-  const card = createCard(data);
-  section.addItem(card);
-}
-
-const section = new Section(
-  {
-    items: [],
-    renderer: renderCard
-    },
-  ".photo-grid"
-);
-section.renderItems()
-
-const addForm = new PopupWithForm(popupAdd, () => {
-    api.addCard(document.querySelector("#addname").value, document.querySelector("#link").value,)
-    .then(res => {
-    const card = createCard({
-      name: res.name,
-      link: res.link,
-      likes: res.likes,
-      id: res._id,
-      userId: userId,
-      ownerId: res.owner._id,
-    })
-  section.addItem(card);
-});
+const addForm = new PopupWithForm(popupAdd, (data)=> {
+  addForm.renderLoading(true);
+  api.addCard(data)
+    .then((res) => {
+    listData(res)
+  addForm.close();
+  })
+.catch(err => console.log(`Ошибка: ${err}`))
+.finally(() => {
+  addForm.renderLoading(false)
+})
 })
 addForm.setEventListeners();
 openAddButton.addEventListener('click', () => {
@@ -120,12 +114,14 @@ const userInfo = new UserInfo({profileNameSelector: '.profile__title', profileJo
 const editForm = new PopupWithForm('.popup_type_edit', (data) => {
   editForm.renderLoading(true);
   const {name, work, avatar} = data;
-  api.editProfile(name, work,avatar)
+  api.editProfile(name, work, avatar)
   .then(() => {
     userInfo.setUserInfo(name, work, avatar);
+    editForm.close();
   })
+  .catch(err => console.log(`Ошибка: ${err}`))
   .finally(() => {
-    renderLoading(false)
+    editForm.renderLoading(false)
   })
   });
 editForm.setEventListeners();
@@ -156,10 +152,12 @@ const avatarPopup = new PopupWithForm('.popup_type_editImgProfile', (input) => {
   avatarPopup.renderLoading(true);
   api.getAvatar(input.avatar)
   .then((res) => {
-    userInfo.setAvatarInfo(res.avatar)
+    userInfo.setAvatarInfo(res.avatar);
+    avatarPopup.close();
   })
+  .catch(err => console.log(`Ошибка: ${err}`))
   .finally(() => {
-    renderLoading(false)
+    avatarPopup.renderLoading(false)
   })
 });
 openImgProfileButton.addEventListener('click', () => {
@@ -168,4 +166,3 @@ openImgProfileButton.addEventListener('click', () => {
   avatarPopup.open(); 
   });
   avatarPopup.setEventListeners();
-  

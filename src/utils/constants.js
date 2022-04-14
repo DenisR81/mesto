@@ -8,6 +8,7 @@ export const jobInput = document.getElementById("work");
 export const profileName = document.querySelector(".profile__title");
 export const profileJob = document.querySelector(".profile__subtitle");
 export const formValidators = {};
+export const initialCards = {};
 export const validationConfig = {
   formSelector: '.popup__container',
   inputSelector: '.popup__fields',
